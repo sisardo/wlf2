@@ -28,7 +28,7 @@ class Festivales_Admin_Controller extends DefaultController {
             //exit(var_dump($_POST));
             $this->mapper->insert(array(
                 'set' => $_POST,
-                'debug' => false
+//                'debug' => false
             ));
             $this->redirect('admin/festivales/agregar');
         }
@@ -37,8 +37,9 @@ class Festivales_Admin_Controller extends DefaultController {
     public function modificarAction() {
         if (empty($_POST)) {
             $this->viewInit();
+            $id = $this->helper->Request()->getDataValue('id');
             $festival = $this->mapper->get(array(
-                'condition' => array('id' => 1),
+                'condition' => array('id' => $id),
 //             'debug'=>true
             ));
             $festival = $festival[0];
@@ -55,7 +56,7 @@ class Festivales_Admin_Controller extends DefaultController {
                 'condition' => array('id' => $id),
 //                'debug' => true
             ));
-            $this->redirect('admin/festivales/modificar');
+            $this->redirect('admin/festivales/modificar/id/' . $id);
         }
     }
 
@@ -110,8 +111,9 @@ class Festivales_Admin_Controller extends DefaultController {
         if (empty($_POST)) {
             $this->viewInit();
             $estiloMapper = new Estilo_Admin_Mapper();
+            $id = $this->helper->Request()->getDataValue('id');
             $estilo = $estiloMapper->get(array(
-                'condition' => array('id' => 1)
+                'condition' => array('id' => $id)
             ));
             $estilo = $estilo[0];
             $this->tpl->ESTILO_ID = $estilo->id;
@@ -124,10 +126,39 @@ class Festivales_Admin_Controller extends DefaultController {
                 'set' => $_POST,
                 'condition' => array('id' => $id)
             ));
-            $this->redirect('admin/festivales/modificar_estilo');
+            $this->redirect('admin/festivales/modificar_estilo/id/' . $id);
+        }
+    }
+
+    public function agregarGrupoAction() {
+        $this->viewInit();
+        $gruposMapper = new Grupos_Admin_Mapper();
+        $grupo = $gruposMapper->get(array(
+            'debug' => false
+        ));
+        foreach ($grupo as $grupolista) {
+            $this->tpl->GRUPOS_ID = $grupolista->id;
+            $this->tpl->GRUPOS_NOMBRE = $grupolista->nombre;
+            $this->tpl->block('GRUPOS_BLOCK');
+        }
+//        $agregarGrupoMapper = new FestivalGrupo_Admin_Mapper();
+//        $listaGrupos = $agregarGrupoMapper->get(array(
+//            'set',
+//            'condition'
+//        ));
+        //para fazer uma query sem usar o sitema pode usar assim
+        $id = $this->helper->Request()->getDataValue('id');
+        $listaGrupo = $this->helper->Database()->query(array(
+            'sql' => 'SELECT gr_nombre FROM welovefe_default.fes_grupo
+                        inner join welovefe_default.fes_festivalgrupo on fes_grupo.gr_fesGrupoId = fes_festivalgrupo.fg_gr_fesGrupoId
+                        inner join welovefe_default.fes_festival on fes_festivalgrupo.fg_fe_fesFestivalId = fes_festival.fe_fesFestivalId
+                        where fes_festivalgrupo.fg_fe_fesFestivalId = ' . $id
+        ));
+        foreach ($listaGrupo as $value) {
+            $this->tpl->LISTAGRUPO_NOMBRE = $value->nombre;
+            $this->tpl->block('LISTAGRUPO_BLOCK');
         }
     }
 
 }
 
-?>

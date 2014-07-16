@@ -11,7 +11,7 @@ class Grupos_Admin_Controller extends DefaultController {
     public function indexAction() {
         $this->viewInit();
         $grupos = $this->mapper->get(array(
-            'condition'=>array('borrado'=>0)
+            'condition' => array('borrado' => 0)
         ));
         foreach ($grupos as $grupo) {
             $this->tpl->GRUPOS_ID = $grupo->id;
@@ -34,8 +34,9 @@ class Grupos_Admin_Controller extends DefaultController {
     public function modificarGrupoAction() {
         if (empty($_POST)) {
             $this->viewInit();
+            $id = $this->helper->Request()->getDataValue('id');
             $grupo = $this->mapper->get(array(
-                'condition' => array('id' => 1)
+                'condition' => array('id' => $id)
             ));
             $grupo = $grupo[0];
             $this->tpl->GRUPO_ID = $grupo->id;
@@ -48,13 +49,14 @@ class Grupos_Admin_Controller extends DefaultController {
                 'set' => $_POST,
                 'condition' => array('id' => $id)
             ));
-            $this->redirect('admin/grupos/modificar_grupo');
+            $this->redirect('admin/grupos/modificar_grupo/id/' . $id);
         }
     }
-    public function borrarGrupoAction(){
+
+    public function borrarGrupoAction() {
         $this->mapper->updateCondition(array(
-            'set'=>array('borrado'=>1),
-            'condition'=>array('id'=>$this->helper->Request()->getDataValue('id'))
+            'set' => array('borrado' => 1),
+            'condition' => array('id' => $this->helper->Request()->getDataValue('id'))
         ));
         $this->redirect('admin/grupos');
     }
