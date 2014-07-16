@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home">home</string>
+    <string name="calendar">calendar</string>
+    <string name="galery">galery</string>
+    <string name="about">about</string>
+    <string name="contact">contact</string>
+    <string name="all_about_the_best_festivals_in_spain">all about the best festivals in spain</string>
+</resources>

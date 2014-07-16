@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about">Sobre</string>
+    <string name="all_about_the_best_festivals_in_spain">Tudo sobre os melhores festivais da espanha</string>
+    <string name="bands">Bandas</string>
+    <string name="calendar">Calendário</string>
+    <string name="categories">Categorias</string>
+    <string name="contact">Contato</string>
+    <string name="dashboard">Painel Geral</string>
+    <string name="festivals">Festivais</string>
+    <string name="galery">Galeria</string>
+    <string name="home">Home</string>
+    <string name="logout">Sair</string>
+    <string name="manage_festival_categories">Gerencie as categorias dos festivais</string>
+    <string name="manage_music_festivals">Gerencie os festivais de música</string>
+</resources>

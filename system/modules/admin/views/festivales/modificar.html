@@ -1,0 +1,15 @@
+Modificar festivales (<a href="/admin/festivales">Volver</a>)<br /><br />
+<form method="POST" action="/admin/festivales/modificar">
+    nombre: <br/>
+    <input name="nombre" type="text" value="{FESTIVAL_NOMBRE}"/>
+<br/>    
+    descripcion: <br/>
+    <input name="descripcion" type="text" value="{FESTIVAL_DESCRIPCION}"/>
+<br/>    
+    fecha de inicio: <br/>
+    <input name="fechaInicio" type="date" value="{FESTIVAL_FECHA}"/>
+<br/>    
+<input type="hidden" name="id" value="{FESTIVAL_ID}"/>
+<input type="hidden" name="sysMunicipioId" value="1"/>
+<input type="submit" value="Aceptar">
+</form>
