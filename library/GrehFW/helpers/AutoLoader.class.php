@@ -15,7 +15,7 @@ class AutoLoader {
      * @var AutoLoader 
      */
     private static $_instance = null;
-    
+
     /**
      * Retorna uma instância de AutoLoader, caso não exista é criada
      * 
@@ -53,7 +53,7 @@ class AutoLoader {
             $type = '';
         }
 
-        $classTypes = array('Mapper', 'Model', 'Controller');
+        $classTypes = array('Mapper', 'Model', 'Controller', 'Form');
 
         if (in_array($type, $classTypes)) {
             require SYSTEM_PATH . 'modules/' . strtolower($module) . '/' . strtolower($type) . 's/' . $name . '.class.php';

@@ -114,7 +114,7 @@ abstract class DefaultController {
             $view_template = $this->helper->Request()->getViewPath();
             if (file_exists($view_template)) {
                 $this->tpl->addFile('CONTENT', $view_template);
-                //$this->inView();
+                $this->inView();
                 //$this->helper->Plugins()->inView();
             } else {
                 exit(var_dump('Não foi possível carrecar a View. (' . $view_template . ')'));
@@ -143,16 +143,12 @@ abstract class DefaultController {
     }
 
     protected function gettext($text) {
-        $textAux = str_replace(' ', '_', $text);
-        $filename = SYSTEM_PATH . 'configs/langs/'. $this->helper->Request()->getModule() .'/' . LANGUAGE . '.xml';
-        if (file_exists($filename)) {
-            $xml = simplexml_load_file($filename);
-            $opa = $xml->xpath('/resources/string[@name="' . $textAux . '"]');
-            if (isset($opa[0])) {
-                return $opa[0];
-            } else {
-                return $text;
-            }
+        return $this->helper->Translator()->getText($text);
+    }
+    
+    protected function inView(){
+        if($this->tpl->exists('ALERT_ERRORS')){
+            $this->tpl->ALERT_ERRORS = $this->helper->Alerts()->showErrors();
         }
     }
 

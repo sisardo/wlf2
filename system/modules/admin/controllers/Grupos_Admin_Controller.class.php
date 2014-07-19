@@ -34,8 +34,9 @@ class Grupos_Admin_Controller extends DefaultController {
     public function modificarGrupoAction() {
         if (empty($_POST)) {
             $this->viewInit();
+            $id = $this->helper->Request()->getDataValue('id');
             $grupo = $this->mapper->get(array(
-                'condition' => array('id' => 1)
+                'condition' => array('id' => $id)
             ));
             $grupo = $grupo[0];
             $this->tpl->GRUPO_ID = $grupo->id;
@@ -48,7 +49,7 @@ class Grupos_Admin_Controller extends DefaultController {
                 'set' => $_POST,
                 'condition' => array('id' => $id)
             ));
-            $this->redirect('admin/grupos/modificar_grupo');
+            $this->redirect('admin/grupos');
         }
     }
     public function borrarGrupoAction(){

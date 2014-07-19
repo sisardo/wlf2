@@ -24,7 +24,18 @@ class Helpers {
             self::$_instance = new self();
         return self::$_instance;
     }
-    
+
+    /**
+     * Retorna uma instância de Alerts, para mais informações olhar o método 
+     * _getHelperInstance. Para mais informações sobre a classe Alerts olhar
+     * a classe em helpers/Alerts.class.php
+     * 
+     * @return Alerts
+     */
+    public function Alerts() {
+        return $this->_getHelperInstance(__FUNCTION__);
+    }
+
     /**
      * Retorna uma instência de AutoLoader, para mais informações olhar o método 
      * _getHelperInstance. Para mais informações sobre a classe AutoLoader olhar
@@ -34,8 +45,8 @@ class Helpers {
      */
     public function AutoLoader() {
         return $this->_getHelperInstance(__FUNCTION__);
-    }    
-    
+    }
+
     /**
      * Retorna uma instência de Database, para mais informações olhar o método 
      * _getHelperInstance. Para mais informações sobre a classe Database olhar
@@ -57,7 +68,7 @@ class Helpers {
     public function Request() {
         return $this->_getHelperInstance(__FUNCTION__);
     }
-    
+
     /**
      * Retorna uma instência de StringFormat, para mais informações olhar o método 
      * _getHelperInstance. Para mais informações sobre a classe StringFormat olhar
@@ -68,7 +79,18 @@ class Helpers {
     public function StringFormat() {
         return $this->_getHelperInstance(__FUNCTION__);
     }
-    
+
+    /**
+     * Retorna uma instência de Translator, para mais informações olhar o método 
+     * _getHelperInstance. Para mais informações sobre a classe Translator olhar
+     * a classe em helpers/Translator.class.php
+     * 
+     * @return Translator
+     */
+    public function Translator() {
+        return $this->_getHelperInstance(__FUNCTION__);
+    }
+
     /**
      * Inclui o arquivo do helper solitidado através de $helpername e chama o 
      * método getInstance(), que retorna uma instância da classe solicitada
@@ -81,6 +103,5 @@ class Helpers {
         require_once LIBRARY_PATH . "GrehFW/helpers/$helperName.class.php";
         return $helperName::getInstance();
     }
-
 
 }

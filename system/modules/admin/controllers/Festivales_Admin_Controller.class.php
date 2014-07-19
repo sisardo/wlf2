@@ -37,8 +37,9 @@ class Festivales_Admin_Controller extends DefaultController {
     public function modificarAction() {
         if (empty($_POST)) {
             $this->viewInit();
+            $id = $this->helper->Request()->getDataValue('id');
             $festival = $this->mapper->get(array(
-                'condition' => array('id' => 1),
+                'condition' => array('id' => $id),
 //             'debug'=>true
             ));
             $festival = $festival[0];
@@ -55,7 +56,7 @@ class Festivales_Admin_Controller extends DefaultController {
                 'condition' => array('id' => $id),
 //                'debug' => true
             ));
-            $this->redirect('admin/festivales/modificar');
+            $this->redirect('admin/festivales');
         }
     }
 

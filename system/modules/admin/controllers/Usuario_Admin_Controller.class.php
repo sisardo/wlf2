@@ -26,8 +26,9 @@ class Usuario_Admin_Controller extends DefaultController {
     public function modificarUsuarioAction() {
         if (empty($_POST)) {
             $this->viewInit();
+            $id = $this->helper->Request()->getDataValue('id');
             $usuario = $this->mapper->get(array(
-                'condition' => array('id' => 1)
+                'condition' => array('id' => $id)
             ));
             $usuario = $usuario[0];
             $this->tpl->USUARIOS_ID = $usuario->id;
@@ -41,7 +42,7 @@ class Usuario_Admin_Controller extends DefaultController {
                 'condition' => array('id' => $id),
                 'debug' => false
             ));
-            $this->redirect('admin/festisvales/modificar_usuario');
+            $this->redirect('admin/usuario');
         }
     }
 
