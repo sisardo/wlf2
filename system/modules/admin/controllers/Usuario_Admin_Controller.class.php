@@ -42,7 +42,7 @@ class Usuario_Admin_Controller extends DefaultController {
                 'condition' => array('id' => $id),
                 'debug' => false
             ));
-            $this->redirect('admin/usuario');
+            $this->redirect('admin/usuario/modificar_usuario/id/' . $id);
         }
     }
 

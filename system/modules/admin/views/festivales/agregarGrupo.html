@@ -1,0 +1,14 @@
+Añadir Grupo a Festival | (<a href="/admin/festivales">Volver</a>) <br/><br/>
+<form method="post" action="/admin/festivales">
+    Grupos:
+    <select name="lstGrupos">
+        <!-- BEGIN GRUPOS_BLOCK -->
+        <option value="{GRUPOS_ID}">{GRUPOS_NOMBRE}</option> 
+        <!-- END GRUPOS_BLOCK -->
+    </select>
+    <input type="submit" value="Aceptar"/>
+</form><br/><br/>
+Lista de Grupos Anidados <br/><br/>
+<!-- BEGIN LISTAGRUPO_BLOCK -->
+{LISTAGRUPO_NOMBRE}
+<!-- END LISTAGRUPO_BLOCK -->
