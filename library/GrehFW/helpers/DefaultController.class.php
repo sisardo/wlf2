@@ -145,10 +145,16 @@ abstract class DefaultController {
     protected function gettext($text) {
         return $this->helper->Translator()->getText($text);
     }
-    
-    protected function inView(){
-        if($this->tpl->exists('ALERT_ERRORS')){
+
+    protected function inView() {
+        if ($this->tpl->exists('ALERT_ERRORS')) {
             $this->tpl->ALERT_ERRORS = $this->helper->Alerts()->showErrors();
+        }
+        if ($this->tpl->exists('ALERT_WARNINGS')) {
+            $this->tpl->ALERT_WARNINGS = $this->helper->Alerts()->showWarnings();
+        }
+        if ($this->tpl->exists('ALERT_SUCCESS')) {
+            $this->tpl->ALERT_SUCCESS = $this->helper->Alerts()->showSuccess();
         }
     }
 
